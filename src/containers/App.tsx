@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { requestGifs } from '../actions';
 import FilterHeader from '../components/FilterHeader/FilterHeader';
 import ResultsList from '../components/ResultsList/ResultsList';
+import { ApplicationState } from '../types';
 
 class App extends React.Component {
   constructor(props: any) {
@@ -19,13 +20,37 @@ class App extends React.Component {
   }
 
   public render() {
+    const {filter, gifs} = this.props as any;
+
     return (
       <div className="App">
-        <FilterHeader />
-        <ResultsList />
+        <FilterHeader filter={filter} />
+        <ResultsList gifs={gifs} />
       </div>
     );
   }
 }
 
-export default connect()(App);
+function mapStateToProps(state: ApplicationState) {
+  const { handleFilter, handleGifs } = state
+  const {
+    isFetching,
+    lastUpdated,
+    gifs,
+    filter
+  } = {...handleFilter, ...handleGifs}|| {
+    filter: 'awn',
+    gifs: [],
+    isFetching: true,
+    lastUpdated: 0
+  }
+​
+  return {
+    filter,
+    gifs,
+    isFetching,
+    lastUpdated
+  }
+}
+
+export default connect(mapStateToProps)(App);

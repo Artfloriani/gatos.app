@@ -4,14 +4,13 @@ import {
   RequestGifsAction,
   SelectFilterAction
 } from "../actions";
-import {
-  RECEIVE_GIFS,
-  REQUEST_GIFS,
-  SELECT_FILTER
-} from "../constants/index";
+import { RECEIVE_GIFS, REQUEST_GIFS, SELECT_FILTER } from "../constants/index";
 import { FilterState, GifsState } from "../types/index";
 
-function selectFilter(state: FilterState = {filter: 'awn'}, action: SelectFilterAction) {
+function handleFilter(
+  state: FilterState = { filter: "awn" },
+  action: SelectFilterAction
+) {
   switch (action.type) {
     case SELECT_FILTER:
       return action.filter;
@@ -20,8 +19,8 @@ function selectFilter(state: FilterState = {filter: 'awn'}, action: SelectFilter
   }
 }
 
-function gifs(
-  state: GifsState = { gifs: [], isFetching: false},
+function handleGifs(
+  state: GifsState = { gifs: [], isFetching: false },
   action: ReceiveGifsAction | RequestGifsAction
 ) {
   switch (action.type) {
@@ -40,8 +39,8 @@ function gifs(
 }
 
 const rootReducer = combineReducers({
-    gifs,
-    selectFilter,
-})
+  handleFilter,
+  handleGifs,
+});
 
 export default rootReducer;

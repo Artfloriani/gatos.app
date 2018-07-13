@@ -1,6 +1,6 @@
 .GifCard {
     width: 100%;
-    height: 150px;
+    height: auto;
 
     background-color: black;
     border-radius: 5px;

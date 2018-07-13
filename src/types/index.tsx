@@ -1,6 +1,6 @@
-export interface IStoreState {
-    languageName: string;
-    enthusiasmLevel: number;
+export interface ApplicationState {
+    handleGifs: GifsState,
+    handleFilter: FilterState
 }
 
 export interface FilterState {
@@ -9,5 +9,6 @@ export interface FilterState {
 
 export interface GifsState {
     isFetching: boolean,
-    gifs: string[]
+    gifs: string[],
+    lastUpdated?: number,
 }

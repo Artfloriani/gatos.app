@@ -1,14 +1,10 @@
 import * as React from 'react';
 import './GifCard.css';
+import { GifCardInterface } from './gifCard.interface';
 
-function GifCard() {
-  const randomHeight = {
-    height: Math.random() * 250 + 100
-  }
-  return (
-    <div style={randomHeight} className="GifCard" />
-  );
-}
+const GifCard : React.SFC<GifCardInterface> = (props : GifCardInterface) => (
+    <img className="GifCard" src={props.url} key={props.id} />
+)
 
 export default GifCard;
 
