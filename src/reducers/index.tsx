@@ -1,13 +1,47 @@
-import { EnthusiasmAction } from '../actions';
-import { DECREMENT_ENTHUSIASM, INCREMENT_ENTHUSIASM } from '../constants/index';
-import { IStoreState } from '../types/index';
+import { combineReducers } from "redux";
+import {
+  ReceiveGifsAction,
+  RequestGifsAction,
+  SelectFilterAction
+} from "../actions";
+import {
+  RECEIVE_GIFS,
+  REQUEST_GIFS,
+  SELECT_FILTER
+} from "../constants/index";
+import { FilterState, GifsState } from "../types/index";
 
-export function enthusiasm(state: IStoreState, action: EnthusiasmAction): IStoreState {
+function selectFilter(state: FilterState = {filter: 'awn'}, action: SelectFilterAction) {
   switch (action.type) {
-    case INCREMENT_ENTHUSIASM:
-      return { ...state, enthusiasmLevel: state.enthusiasmLevel + 1 };
-    case DECREMENT_ENTHUSIASM:
-      return { ...state, enthusiasmLevel: Math.max(1, state.enthusiasmLevel - 1) };
+    case SELECT_FILTER:
+      return action.filter;
+    default:
+      return state;
   }
-  return state;
 }
+
+function gifs(
+  state: GifsState = { gifs: [], isFetching: false},
+  action: ReceiveGifsAction | RequestGifsAction
+) {
+  switch (action.type) {
+    case REQUEST_GIFS:
+      return Object.assign({}, state, { isFetching: true });
+    case RECEIVE_GIFS:
+      const typedAction = action as ReceiveGifsAction;
+      return Object.assign({}, state, {
+        gifs: typedAction.gifs,
+        isFetching: false,
+        lastUpdated: typedAction.receivedAt
+      });
+    default:
+      return state;
+  }
+}
+
+const rootReducer = combineReducers({
+    gifs,
+    selectFilter,
+})
+
+export default rootReducer;
