@@ -214,7 +214,7 @@
         avatar: string;
     }
 
-    export interface Datum {
+    export interface GiphyData {
         type: string;
         id: string;
         slug: string;
@@ -250,7 +250,7 @@
     }
 
     export interface GiphyApiResponse {
-        data: Datum[];
+        data: GiphyData[];
         pagination: Pagination;
         meta: Meta;
     }

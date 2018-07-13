@@ -1,17 +1,21 @@
-import { applyMiddleware, createStore } from 'redux'
-import { createLogger } from 'redux-logger'
-import thunkMiddleware from 'redux-thunk'
-import rootReducer from '../reducers';
-​
-const loggerMiddleware = createLogger()
-​
+import { applyMiddleware, createStore } from "redux";
+import { createLogger } from "redux-logger";
+import createSagaMiddleware from "redux-saga";
+import rootReducer from "../reducers";
+import rootGifSaga from "../sagas/gifs.sagas";
+
+
+const loggerMiddleware = createLogger();
+
 export default function configureStore(preloadedState: any) {
-  return createStore(
+  const sagaMiddleware = createSagaMiddleware();
+  const store = createStore(
     rootReducer,
     preloadedState,
-    applyMiddleware(
-      thunkMiddleware,
-      loggerMiddleware
-    )
-  )
+    applyMiddleware(sagaMiddleware, loggerMiddleware)
+  );
+
+  sagaMiddleware.run(rootGifSaga);
+
+  return store;
 }

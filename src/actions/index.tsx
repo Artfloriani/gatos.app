@@ -1,5 +1,5 @@
-import { Dispatch } from "redux";
 import * as constants from "../constants"; 
+import { GifData } from "../types/gifData.interface";
 
 export interface SelectFilterAction {
   type: string;
@@ -14,7 +14,7 @@ export interface RequestGifsAction {
 export interface ReceiveGifsAction {
   type: string;
   filter: string;
-  gifs: string[];
+  gifs: GifData[];
   receivedAt: number;
 }
 
@@ -34,24 +34,11 @@ export function requestGifs(filter: string): RequestGifsAction {
   };
 }
 
-export function receiveGifs(filter: string, json: string[]): ReceiveGifsAction {
+export function receiveGifs(filter: string, json: GifData[]): ReceiveGifsAction {
   return {
     filter,
     gifs: json,
     receivedAt: Date.now(),
     type: constants.RECEIVE_GIFS
-  };
-}
-
-export function fetchGifs(filter: string) {
-  return (dispatch: Dispatch<any>) => {
-    dispatch(requestGifs(filter));
-
-    return fetch("https://jsonplaceholder.typicode.com/posts/1")
-      .then(
-        response => response.json(),
-        error => console.log("[FetchGifs] Error ", error)
-      )
-      .then(json => dispatch(receiveGifs(filter, json)));
   };
 }

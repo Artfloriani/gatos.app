@@ -2,7 +2,7 @@ import * as React from 'react';
 import './App.css';
 
 import { connect } from 'react-redux';
-import { fetchGifs } from '../actions';
+import { requestGifs } from '../actions';
 import FilterHeader from '../components/FilterHeader/FilterHeader';
 import ResultsList from '../components/ResultsList/ResultsList';
 
@@ -15,7 +15,7 @@ class App extends React.Component {
   public componentDidMount() {
     // Types are throwing error, using any as workaround
     const {dispatch} = this.props as any;
-    dispatch(fetchGifs('awn'));
+    dispatch(requestGifs('awn'));
   }
 
   public render() {
