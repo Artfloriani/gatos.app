@@ -14,10 +14,9 @@ function FilterHeader() {
       </div>
 
       <div className="FilterHeader__filters">
-        <EmojiButton text=":smile_cat: Meww" /> 
+        <EmojiButton text=":joy_cat: Meeeww" /> 
         <EmojiButton text=":heart_eyes_cat: Mewmewmew" />
-        <EmojiButton text=":crying_cat_face: Meeeww" />
-        <EmojiButton text=":crying_cat_face: Meeeww" />
+        <EmojiButton text=":crying_cat_face: Mew" />
       </div>
  
     </div>

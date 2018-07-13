@@ -1,20 +1,29 @@
 .ResultsList__results {
     width: 100%;
+    max-width: 1200px;
+    margin: auto;
     display: flex;
     flex-wrap: wrap;
 }
 
 .ResultsList__column {
     box-sizing: border-box;
-    flex: 25%;
-    max-width: 25%;
+    flex: 50%;
+    max-width: 50%;
     padding: 0 4px;
   }
 
   @media screen and (max-width: 600px) {
     .ResultsList__column  {
-      flex: 50%;
-      max-width: 50%;
+      flex: 100%;
+      max-width: 100%;
+    }
+  }
+
+  @media screen and (min-width: 1200px) {
+    .ResultsList__column  {
+      flex: 25%;
+      max-width: 25%;
     }
   }
   
