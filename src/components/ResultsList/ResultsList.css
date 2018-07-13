@@ -1,0 +1,21 @@
+.ResultsList__results {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ResultsList__column {
+    box-sizing: border-box;
+    flex: 25%;
+    max-width: 25%;
+    padding: 0 4px;
+  }
+
+  @media screen and (max-width: 600px) {
+    .ResultsList__column  {
+      flex: 50%;
+      max-width: 50%;
+    }
+  }
+  
+ 

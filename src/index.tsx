@@ -1,8 +1,11 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import Hello from './containers/Hello';
+
+import 'normalize.css';
 import './index.css';
+
+import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 import { createStore } from 'redux';
@@ -16,7 +19,7 @@ const store = createStore(enthusiasm, {
 
 ReactDOM.render(
   <Provider store={store}>
-    <Hello />
+    <App />
   </Provider>,
   document.getElementById('root') as HTMLElement
 );
