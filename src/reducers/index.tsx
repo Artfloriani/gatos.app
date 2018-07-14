@@ -1,46 +1,39 @@
-import { combineReducers } from "redux";
-import {
-  ReceiveGifsAction,
-  RequestGifsAction,
-  SelectFilterAction
-} from "../actions";
+import { ReceiveGifsAction, RequestGifsAction } from "../actions";
 import { RECEIVE_GIFS, REQUEST_GIFS, SELECT_FILTER } from "../constants/index";
-import { FilterState, GifsState } from "../types/index";
-
-function handleFilter(
-  state: FilterState = { filter: "awn" },
-  action: SelectFilterAction
-) {
-  switch (action.type) {
-    case SELECT_FILTER:
-      return action.filter;
-    default:
-      return state;
-  }
-}
+import { GifsState } from "../types/index";
 
 function handleGifs(
-  state: GifsState = { gifs: [], isFetching: false },
+  state: GifsState,
   action: ReceiveGifsAction | RequestGifsAction
 ) {
   switch (action.type) {
     case REQUEST_GIFS:
       return Object.assign({}, state, { isFetching: true });
     case RECEIVE_GIFS:
-      const typedAction = action as ReceiveGifsAction;
-      return Object.assign({}, state, {
-        gifs: typedAction.gifs,
+      const receiveAction = action as ReceiveGifsAction;
+
+      const newState: GifsState = {
+        currentPage: state.currentPage + 1,
+        filter: state.filter,
+        gifs: receiveAction.gifs,
         isFetching: false,
-        lastUpdated: typedAction.receivedAt
-      });
+        lastUpdated: receiveAction.receivedAt,
+        searchQuery: 'cats'
+      };
+      return Object.assign({}, state, newState);
+    case SELECT_FILTER:
+      const selectAction = action as ReceiveGifsAction;
+      const searchQuery = handleFilter(selectAction.filter);
+      return Object.assign({}, state, { filter: selectAction.filter, currentPage: 0, searchQuery });
     default:
       return state;
   }
 }
 
-const rootReducer = combineReducers({
-  handleFilter,
-  handleGifs,
-});
+function handleFilter(filter: string) {
+  return '';
+}
+
+const rootReducer = handleGifs;
 
 export default rootReducer;

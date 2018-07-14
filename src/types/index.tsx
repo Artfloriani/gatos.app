@@ -1,14 +1,15 @@
-export interface ApplicationState {
-    handleGifs: GifsState,
-    handleFilter: FilterState
-}
-
-export interface FilterState {
-    filter: string
-}
+import { GifData } from "./gifData.interface";
 
 export interface GifsState {
     isFetching: boolean,
-    gifs: string[],
+    currentPage: number,
+    filter: string,
+    gifs: GifData[],
     lastUpdated?: number,
+    searchQuery: string
+}
+
+export interface FilterButtonType {
+    text: string,
+    searchQuery: string
 }

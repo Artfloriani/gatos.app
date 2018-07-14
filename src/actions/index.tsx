@@ -8,34 +8,35 @@ export interface SelectFilterAction {
 
 export interface RequestGifsAction {
   type: string;
-  filter: string;
 }
 
 export interface ReceiveGifsAction {
   type: string;
   filter: string;
+  currentPage: number;
   gifs: GifData[];
   receivedAt: number;
 }
 
-export type GifsAction = RequestGifsAction | ReceiveGifsAction;
+export type GifsAction = ReceiveGifsAction;
 
 export function selectFilter(filter: string): SelectFilterAction {
-  return {
+  const action = {
     filter,
     type: constants.SELECT_FILTER
-  };
+  }
+  return action;
 }
 
-export function requestGifs(filter: string): RequestGifsAction {
+export function requestGifs(): RequestGifsAction {
   return {
-    filter,
     type: constants.REQUEST_GIFS
   };
 }
 
-export function receiveGifs(filter: string, json: GifData[]): ReceiveGifsAction {
+export function receiveGifs(filter: string, json: GifData[], currentPage: number): ReceiveGifsAction {
   return {
+    currentPage,
     filter,
     gifs: json,
     receivedAt: Date.now(),

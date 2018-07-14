@@ -3,7 +3,7 @@ import './GifCard.css';
 import { GifCardInterface } from './gifCard.interface';
 
 const GifCard : React.SFC<GifCardInterface> = (props : GifCardInterface) => (
-    <img className="GifCard" src={props.url} key={props.id} />
+    <img className="GifCard" src={props.url} />
 )
 
 export default GifCard;

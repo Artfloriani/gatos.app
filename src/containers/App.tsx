@@ -2,43 +2,50 @@ import * as React from 'react';
 import './App.css';
 
 import { connect } from 'react-redux';
-import { requestGifs } from '../actions';
+import { requestGifs, selectFilter } from '../actions';
 import FilterHeader from '../components/FilterHeader/FilterHeader';
 import ResultsList from '../components/ResultsList/ResultsList';
-import { ApplicationState } from '../types';
+import { GifsState } from '../types';
+import { AppComponentProps } from './App.interface';
 
-class App extends React.Component {
-  constructor(props: any) {
+class App extends React.Component<AppComponentProps, {}> {
+  constructor(public props: any) {
     super(props);
   }
 
 
   public componentDidMount() {
     // Types are throwing error, using any as workaround
-    const {dispatch} = this.props as any;
-    dispatch(requestGifs('awn'));
+    this.props.loadGifs();
+    this.shouldRequestNewGifs = this.shouldRequestNewGifs.bind(this);
   }
 
   public render() {
-    const {filter, gifs} = this.props as any;
+    const {filter, gifs, loadGifs, isFetching} = this.props;
 
     return (
       <div className="App">
-        <FilterHeader filter={filter} />
-        <ResultsList gifs={gifs} />
+        <FilterHeader filter={filter} onChange={this.shouldRequestNewGifs}  />
+        <ResultsList gifs={gifs} loadMore={loadGifs} isFetching={isFetching}/>
       </div>
     );
   }
+
+  public shouldRequestNewGifs() {
+    if(!this.props.isFetching) {
+      this.props.loadGifs();
+    }
+  }
 }
 
-function mapStateToProps(state: ApplicationState) {
-  const { handleFilter, handleGifs } = state
+function mapStateToProps(state: GifsState) {
+  
   const {
     isFetching,
     lastUpdated,
     gifs,
     filter
-  } = {...handleFilter, ...handleGifs}|| {
+  } = {...state} || {
     filter: 'awn',
     gifs: [],
     isFetching: true,
@@ -53,4 +60,11 @@ function mapStateToProps(state: ApplicationState) {
   }
 }
 
-export default connect(mapStateToProps)(App);
+
+
+const mapDispatchToProps = (dispatch: any) => ({
+  loadGifs: () => dispatch(requestGifs()),
+  updateFilter: (filter : string) => dispatch(selectFilter(filter)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

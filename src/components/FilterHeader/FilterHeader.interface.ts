@@ -1,3 +1,4 @@
 export interface FilterHeaderProps {
-    filter: string
+    filter: string,
+    onChange: (filter: string) => void
 }

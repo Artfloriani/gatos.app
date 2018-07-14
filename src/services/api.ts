@@ -1,11 +1,18 @@
 import { GifData } from "../types/gifData.interface";
-import { GiphyData } from "../types/giphy-api-response";
+import { GiphyApiResponse, GiphyData } from "../types/giphy-api-response";
+import { GetGifsParameters } from "./api.interface";
 
-export function getGifsFromApi() {
-  return fetch("http://localhost:3004/data")
+export function getGifsFromApi(parms: GetGifsParameters) {
+  return fetch("http://localhost:3004/response")
     .then(response => response.json())
-    .then(json => mapGiphyApiResponse(json))
-    .then(response => ({ response }))
+    .then((json: GiphyApiResponse) => {
+      return {
+        response: {
+          currentPage: json.pagination.offset,
+          gifs: mapGiphyApiResponse(json.data)
+        }
+      };
+    })
     .catch(err => ({ err }));
 }
 
