@@ -1,5 +1,4 @@
 .FilterHeader__title {
-    margin-top: 10px;
     margin-bottom: 15px;
 
     font-size: 18px;
@@ -9,9 +8,14 @@
 
 .FilterHeader__filters {
     width: 100%;
-    margin-bottom: 10px;
     
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
+}
+
+.FilterHeader {
+    padding-top: 10px;
+    padding-bottom: 10px; 
+    background-color: white;
 }

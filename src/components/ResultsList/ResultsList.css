@@ -1,6 +1,8 @@
 .ResultsList__results {
     width: 100%;
     max-width: 1200px;
+
+    padding-top: 100px;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
