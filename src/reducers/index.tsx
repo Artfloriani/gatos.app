@@ -15,7 +15,7 @@ function handleGifs(
       const newState: GifsState = {
         currentPage: state.currentPage + 1,
         filter: state.filter,
-        gifs: receiveAction.gifs,
+        gifs: state.gifs.concat(receiveAction.gifs),
         isFetching: false,
         lastUpdated: receiveAction.receivedAt,
         searchQuery: 'cats'
@@ -23,16 +23,12 @@ function handleGifs(
       return Object.assign({}, state, newState);
     case SELECT_FILTER:
       const selectAction = action as ReceiveGifsAction;
-      const searchQuery = handleFilter(selectAction.filter);
-      return Object.assign({}, state, { filter: selectAction.filter, currentPage: 0, searchQuery });
+      return Object.assign({}, state, { filter: selectAction.filter, gifs:[], currentPage: 0 });
     default:
       return state;
   }
 }
 
-function handleFilter(filter: string) {
-  return '';
-}
 
 const rootReducer = handleGifs;
 

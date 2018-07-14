@@ -22,15 +22,13 @@ export default class ResultsList extends React.Component<
       return this.renderColumn(el, index);
     });
     const loader = (
-      <div className="loader" key={0}>
-        Loading ...
-      </div>
+      <img src="https://media.giphy.com/media/5xRW2cUKfcyQg/giphy.gif" key="loader-image-key"/>
     );
 
     return (
       <InfiniteScroll
         pageStart={0}
-        loadMore={this.handleInfiniteLoader}
+        loadMore={this.props.loadMore}
         hasMore={true}
         loader={loader}
       >
@@ -58,12 +56,6 @@ export default class ResultsList extends React.Component<
     });
 
     return filledColumns;
-  }
-
-  private handleInfiniteLoader() {
-    if(this.props && !this.props.isFetching && this.props.loadMore){
-      this.props.loadMore();
-    }
   }
 
   private renderGif(gifData: GifData) {

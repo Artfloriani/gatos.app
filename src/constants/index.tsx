@@ -25,7 +25,7 @@ export const FILTER_BUTTONS: FilterButtonType[] = [
     text: ":heart_eyes_cat: Mewmewmew"
   },
   {
-    searchQuery: "sleeping cat",
-    text: ":crying_cat_face: Mew"
+    searchQuery: "crazy cat",
+    text: ":smirk_cat: Mew"
   }
 ];

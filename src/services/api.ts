@@ -1,9 +1,20 @@
+import { GIPHY_API_KEY } from "../api.key";
 import { GifData } from "../types/gifData.interface";
 import { GiphyApiResponse, GiphyData } from "../types/giphy-api-response";
 import { GetGifsParameters } from "./api.interface";
 
-export function getGifsFromApi(parms: GetGifsParameters) {
-  return fetch("http://localhost:3004/response")
+const apiEndpoint = "https://api.giphy.com/v1/gifs/search?api_key=";
+
+export function getGifsFromApi(params: GetGifsParameters) {
+    const url =`${apiEndpoint}${GIPHY_API_KEY}&q=${params.filter}&limit=25&offset=${
+        params.currentPage
+      }&rating=PG-13&lang=en`;
+      console.log(url);
+  return fetch(
+    `${apiEndpoint}${GIPHY_API_KEY}&q=${params.filter}&limit=25&offset=${
+      params.currentPage
+    }&rating=PG-13&lang=en`
+  )
     .then(response => response.json())
     .then((json: GiphyApiResponse) => {
       return {

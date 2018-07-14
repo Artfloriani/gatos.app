@@ -19,6 +19,7 @@ export default class FilterHeader extends React.Component<
       return (
         <EmojiButton
           onClick={this.props.onChange}
+          selected={this.props.filter === el.searchQuery}
           text={el.text}
           query={el.searchQuery}
           key={index}
