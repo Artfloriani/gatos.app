@@ -5,7 +5,7 @@ import { GetGifsParameters } from "./api.interface";
 const apiEndpoint = "https://api.giphy.com/v1/gifs/search?api_key=";
 
 export function getGifsFromApi(params: GetGifsParameters) {
-    const url =`${apiEndpoint}${process.env.GIPHY_API_KEY}&q=${params.filter}&limit=25&offset=${
+    const url =`${apiEndpoint}${process.env.REACT_APP_GIPHY_API_KEY}&q=${params.filter}&limit=25&offset=${
         params.currentPage
       }&rating=PG-13&lang=en`;
       console.log(url);
