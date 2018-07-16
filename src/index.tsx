@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import unregister from './registerServiceWorker';
 
 import Root from './Root';
 
@@ -15,4 +14,4 @@ ReactDOM.render(
   document.getElementById('root') as HTMLElement
 );
 // registerServiceWorker();
-unregister()
+// unregister()
