@@ -1,14 +1,17 @@
-import { GifData } from "../types/gifData.interface";
+import { MAX_RESULTS, PAGE_SIZE } from "../constants";
+import { GifData } from "../types/gif-data.interface";
 import { GiphyApiResponse, GiphyData } from "../types/giphy-api-response";
 import { GetGifsParameters } from "./api.interface";
 
 const apiEndpoint = "https://api.giphy.com/v1/gifs/search?api_key=";
 
 export function getGifsFromApi(params: GetGifsParameters) {
-    const url =`${apiEndpoint}${process.env.REACT_APP_GIPHY_API_KEY}&q=${params.filter}&limit=25&offset=${
-        params.currentPage
-      }&rating=PG-13&lang=en`;
-      console.log(url);
+  // const offset = params.currentPage * PAGE_SIZE;
+  // This is a test to make everything random
+  const randomPage = Math.floor(Math.random() * (MAX_RESULTS / PAGE_SIZE));
+  const url = `${apiEndpoint}${process.env.REACT_APP_GIPHY_API_KEY}&q=${
+    params.filter
+  }&limit=${PAGE_SIZE}&offset=${randomPage}&rating=PG-13&lang=en`;
   return fetch(url)
     .then(response => response.json())
     .then((json: GiphyApiResponse) => {

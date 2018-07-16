@@ -1,5 +1,5 @@
 import * as constants from "../constants"; 
-import { GifData } from "../types/gifData.interface";
+import { GifData } from "../types/gif-data.interface";
 
 export interface SelectFilterAction {
   type: string;

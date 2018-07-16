@@ -1,4 +1,4 @@
-import { GifData } from "./gifData.interface";
+import { GifData } from "./gif-data.interface";
 
 export interface GifsState {
     isFetching: boolean,

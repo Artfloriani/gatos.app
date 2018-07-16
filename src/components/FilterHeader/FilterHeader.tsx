@@ -28,15 +28,19 @@ export default class FilterHeader extends React.Component<
         />
       );
     });
+
     return (
       <StickyHeader
       // This is the sticky part of the header.
       header={
         <div className="FilterHeader">
-          <div className="FilterHeader__title">Meew mew meww?</div>
+
+          <div className="FilterHeader__title">Gatos</div>
 
           <div className="FilterHeader__filters">
-            { filterButtons }
+            <div className="FilterHeader__scroll">
+              { filterButtons }
+            </div>
           </div>
         </div>
       } />

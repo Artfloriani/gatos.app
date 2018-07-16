@@ -18,14 +18,23 @@ export type RECEIVE_GIFS = typeof RECEIVE_GIFS;
 export const FILTER_BUTTONS: FilterButtonType[] = [
   {
     searchQuery: "funny cats",
-    text: ":joy_cat: Meeeww"
+    text: ":joy_cat: Engraçados"
   },
   {
     searchQuery: "cute cats",
-    text: ":heart_eyes_cat: Mewmewmew"
+    text: ":heart_eyes_cat: Fofinhos"
   },
   {
-    searchQuery: "crazy cat",
-    text: ":smirk_cat: Mew"
+    searchQuery: "angry cat",
+    text: ":smirk_cat: Putos"
+  }
+  ,
+  {
+    searchQuery: "sad cat",
+    text: ":crying_cat_face: Chateados"
   }
 ];
+
+
+export const PAGE_SIZE = 12;
+export const MAX_RESULTS = 5000;

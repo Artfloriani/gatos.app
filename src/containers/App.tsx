@@ -8,6 +8,8 @@ import ResultsList from "../components/ResultsList/ResultsList";
 import { GifsState } from "../types";
 import { AppComponentProps } from "./App.interface";
 
+
+
 class App extends React.Component<AppComponentProps, {}> {
   constructor(public props: any) {
     super(props);

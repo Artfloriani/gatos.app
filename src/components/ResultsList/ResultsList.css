@@ -1,11 +1,20 @@
+.ResultsList {
+  padding-top: 100px;
+}
+
 .ResultsList__results {
     width: 100%;
     max-width: 1200px;
 
-    padding-top: 100px;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
+}
+
+.ResultsList__giphy-logo {
+  width: 200px;
+  height: 22px;
+  margin: auto;
 }
 
 .ResultsList__column {

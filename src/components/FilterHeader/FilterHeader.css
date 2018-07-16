@@ -8,14 +8,20 @@
 
 .FilterHeader__filters {
     width: 100%;
+    min-height: 0px;
+    line-height: auto;
     
-    overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
 }
 
+.filterHeader__scroll {
+    overflow-x: scroll;
+}
+
 .FilterHeader {
+    position: relative;
     padding-top: 10px;
-    padding-bottom: 10px; 
+    padding-bottom: 5px; 
     background-color: white;
 }

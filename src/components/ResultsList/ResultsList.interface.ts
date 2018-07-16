@@ -1,4 +1,4 @@
-import { GifData } from "../../types/gifData.interface";
+import { GifData } from "../../types/gif-data.interface";
 
 export interface ResultsListProps {
     gifs: GifData[],
