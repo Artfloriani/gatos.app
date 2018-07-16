@@ -1,10 +1,13 @@
-import * as React from 'react';
-import './GifCard.css';
-import { GifCardInterface } from './gifCard.interface';
+import * as React from "react";
+import "./GifCard.css";
 
-const GifCard : React.SFC<GifCardInterface> = (props : GifCardInterface) => (
+import LazyLoad from "react-lazyload";
+import { GifCardInterface } from "./gifCard.interface";
+
+const GifCard: React.SFC<GifCardInterface> = (props: GifCardInterface) => (
+  <LazyLoad height={200} offset={100}>
     <img className="GifCard" src={props.url} />
-)
+  </LazyLoad>
+);
 
 export default GifCard;
-
