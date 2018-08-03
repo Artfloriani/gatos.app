@@ -25,10 +25,9 @@ export const FILTER_BUTTONS: FilterButtonType[] = [
     text: ":heart_eyes_cat: Cute"
   },
   {
-    searchQuery: "wet cat",
-    text: ":pouting_cat: Molhados"
-  }
-  ,
+    searchQuery: "happy cats",
+    text: ":smile_cat: Felizes"
+  },
   {
     searchQuery: "sad cat",
     text: ":crying_cat_face: Chateados"
