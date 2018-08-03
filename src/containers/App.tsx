@@ -8,11 +8,14 @@ import ResultsList from "../components/ResultsList/ResultsList";
 import { GifsState } from "../types";
 import { AppComponentProps } from "./App.interface";
 
-
+import * as ReactGA from 'react-ga'
 
 class App extends React.Component<AppComponentProps, {}> {
   constructor(public props: any) {
     super(props);
+
+    ReactGA.initialize('UA-123385273-1');
+    ReactGA.pageview('/home');
   }
 
   public componentDidMount() {
@@ -40,6 +43,11 @@ class App extends React.Component<AppComponentProps, {}> {
   public shouldRequestNewGifs() {
     if (this.props && !this.props.isFetching) {
       this.props.loadGifs();
+      ReactGA.event({
+        action: 'Load More',
+        category: 'Content',
+        value: this.props.currentPage
+      })
     }
   }
 
@@ -47,18 +55,25 @@ class App extends React.Component<AppComponentProps, {}> {
     if (this.props) {
       this.props.updateFilter(filter);
       this.props.loadGifs();
+      ReactGA.event({
+        action: 'change',
+        category: 'Filters',
+        label: filter
+      });
     }
   }
 }
 
 function mapStateToProps(state: GifsState) {
-  const { isFetching, lastUpdated, gifs, filter } = { ...state } || {
+  const { isFetching, lastUpdated, gifs, filter, currentPage } = { ...state } || {
+    currentPage: 0,
     filter: "awn",
     gifs: [],
     isFetching: true,
-    lastUpdated: 0
+    lastUpdated: 0,
   };
   return {
+    currentPage,
     filter,
     gifs,
     isFetching,

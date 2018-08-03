@@ -67,15 +67,15 @@ export default class ResultsList extends React.Component<
     return filledColumns;
   }
 
-  private renderGif(gifData: GifData) {
-    return <GifCard url={gifData.url} key={gifData.id} />;
+  private renderGif(gifData: GifData, index: number) {
+    return <GifCard url={gifData.url} key={index} />;
   }
 
   private renderColumn(content: any[] | null, index: number) {
     const gifElements =
       content && content.length > 0
-        ? content.map(el => {
-            return this.renderGif(el);
+        ? content.map((el, ind) => {
+            return this.renderGif(el, ind);
           })
         : null;
     return (
