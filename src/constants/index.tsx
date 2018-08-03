@@ -22,11 +22,11 @@ export const FILTER_BUTTONS: FilterButtonType[] = [
   },
   {
     searchQuery: "cute cats",
-    text: ":heart_eyes_cat: Fofinhos"
+    text: ":heart_eyes_cat: Cute"
   },
   {
-    searchQuery: "angry cat",
-    text: ":smirk_cat: Putos"
+    searchQuery: "wet cat",
+    text: ":pouting_cat: Molhados"
   }
   ,
   {
@@ -37,4 +37,4 @@ export const FILTER_BUTTONS: FilterButtonType[] = [
 
 
 export const PAGE_SIZE = 12;
-export const MAX_RESULTS = 5000;
+export const MAX_RESULTS = 1000;
